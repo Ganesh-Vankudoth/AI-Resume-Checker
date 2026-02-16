@@ -1,0 +1,18 @@
+# Python
+Backend/WebApp/venv/
+Backend/WebApp/__pycache__/
+Backend/WebApp/*.pyc
+
+# Environment files
+Backend/WebApp/.env
+
+
+# Database
+Backend/WebApp/db.sqlite3
+
+# React
+Frontend/frontend/node_modules/
+Frontend/frontend/build/
+
+# Misc
+.env
