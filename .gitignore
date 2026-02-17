@@ -1,18 +1,41 @@
+# -------------------------
 # Python
-Backend/WebApp/venv/
-Backend/WebApp/__pycache__/
-Backend/WebApp/*.pyc
+# -------------------------
+__pycache__/
+*.py[cod]
+*$py.class
 
-# Environment files
-Backend/WebApp/.env
+# Virtual Environments
+venv/
+env/
+.venv/
 
+# -------------------------
+# Django
+# -------------------------
+media/
+staticfiles/
+db.sqlite3
+*.log
 
-# Database
-Backend/WebApp/db.sqlite3
-
-# React
-Frontend/frontend/node_modules/
-Frontend/frontend/build/
-
-# Misc
+# Environment Variables
 .env
+
+# -------------------------
+# React / Frontend
+# -------------------------
+node_modules/
+build/
+dist/
+
+# -------------------------
+# VS Code
+# -------------------------
+.vscode/
+
+# -------------------------
+# OS Generated Files
+# -------------------------
+.DS_Store
+Thumbs.db
+
