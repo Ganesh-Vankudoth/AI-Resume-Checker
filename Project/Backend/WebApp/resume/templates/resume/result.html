@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Analysis Result</title>
+    <style>
+    body {
+        font-family:Arial;
+        margin:40px;
+    }
+    .score{
+        font-size: 24px;
+        font-weight: bold;
+    }
+    .green {
+        color: green;
+    }
+    .orange{
+        color:orange
+    }
+    .red{
+        color:red
+    }
+    ul{
+        margin-top: 5px;
+    }
+
+    a{
+        text-decoration: none;
+        color: blue;
+    }
+    </style>
+</head>
+<body>
+    <h2>Resume Analysis Result</h2>
+    <p><strong>Selected Role:</strong> {{job_role}}</p>
+    <h3>Resume Score:</h3>
+    {% if score >= 70 %}
+    <p class="score green"> Score:{{score}} %</p>
+    {% elif score >= 40 %}
+    <p class="score orange">Score:{{score}} %</p>
+    {% else %}
+    <p class="score red">Score:{{score}} %</p>
+    {% endif %}
+    
+    <h3>Matched Skills:</h3>
+    <ul>
+        {% for skill in matched_keywords %}
+        <li>{{skill}}</li>
+        {% empty %}
+        <li>No matched skills found</li>
+        {% endfor %}
+    </ul>
+
+    <h3>Missing Skills:</h3>
+    <ul>
+        {% for skill in missing_keywords %}
+        <li>{{skill}}</li>
+        {% empty %}
+        <li>NO missing skills </li>
+        {% endfor %}
+    </ul>
+    <br>
+    <a href="/">Upload Another Resume</a>
+    
+</body>
+</html>

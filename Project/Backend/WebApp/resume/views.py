@@ -22,13 +22,13 @@ def upload_resume(request):
             resume.score=score
             resume.matched_keywords=", ".join(matched)
             resume.save()
-            return JsonResponse({
-                "status": "success", 
-                "job_role":resume.job_role,
+            context={
+                "job_role":resume.get_job_role_display(),
                 "score":score,
                 "matched_keywords":matched,
                 "missing_keywords":missing
-            })
+            }
+            return render(request,"resume/result.html",context)
     else:
         # Show an empty form for the GET request
         form = ResumeUploadForm()
