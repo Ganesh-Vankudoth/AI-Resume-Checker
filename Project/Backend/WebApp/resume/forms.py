@@ -4,4 +4,4 @@ from.models import Resume
 class ResumeUploadForm(forms.ModelForm):
     class Meta:
         model=Resume
-        fields=['file']
+        fields=['file','job_role']

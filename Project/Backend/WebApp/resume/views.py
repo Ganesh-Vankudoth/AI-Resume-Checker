@@ -17,15 +17,17 @@ def upload_resume(request):
             resume=form.save()
             file_path=resume.file.path
             extracted_text=extract_text_from_pdf(file_path)
+            score,matched,missing=analyze_resume(extracted_text,resume.job_role)
             resume.extracted_text=extracted_text
-            score,matched_keywords=analyze_resume(extracted_text)
             resume.score=score
-            resume.matched_keywords=matched_keywords
+            resume.matched_keywords=", ".join(matched)
             resume.save()
             return JsonResponse({
                 "status": "success", 
+                "job_role":resume.job_role,
                 "score":score,
-                "matched_keywords":matched_keywords
+                "matched_keywords":matched,
+                "missing_keywords":missing
             })
     else:
         # Show an empty form for the GET request
