@@ -14,4 +14,4 @@ class Resume(models.Model):
     score=models.IntegerField(default=0)
     matched_keywords=models.TextField(blank=True)
     def __str__(self):
-        return f"{self.file.name} - {self.job_role}"
+        return f"{self.get_job_role_display()} - {self.score}%"

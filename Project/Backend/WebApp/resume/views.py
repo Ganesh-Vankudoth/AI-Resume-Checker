@@ -35,3 +35,10 @@ def upload_resume(request):
     
     # Send the form to our HTML template
     return render(request, 'resume/upload.html', {'form': form})
+
+def resume_history(request):
+    resumes=Resume.objects.all().order_by("-uploaded_at")
+    context={
+        "resumes":resumes
+    }
+    return render(request,"resume/history.html",context)

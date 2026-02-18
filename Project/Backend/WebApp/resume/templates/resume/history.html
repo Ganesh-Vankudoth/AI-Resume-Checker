@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume History</title>
+    <style>
+        body{
+            font-family: Arial;
+            margin: 40px;
+        }
+        table{
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th,td{
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: center;
+        }
+        th{
+            background-color: #f2f2f2;
+        }
+        a{
+            text-decoration: none;
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <h2>Resume History</h2>
+    {% if resumes %}
+    <table>
+       <tr>
+        <th>Role</th>
+        <th>Score</th>
+        <th>Uploaded on</th>
+        <th>Matched Skills</th>
+       </tr>
+       <tr>
+        {% for resume in resumes %}
+        <tr>
+            <td>{{ resume.get_job_role_display }}</td>
+            <td>{{ resume.score }}</td>
+            <td>{{ resume.uploaded_at }}</td>
+             <td>{{ resume.matched_keywords }}</td>
+
+        </tr>
+        {% endfor %}
+       </tr>
+       {% else %}
+       <p>No resume uploaded yet.</p>
+       {% endif %}
+    </table>
+    <br>
+    <a href="/resume/upload/">Upload New Resume </a>
+</body>
+</html>
