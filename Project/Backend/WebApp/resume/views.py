@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from .forms import ResumeUploadForm
 from .models import Resume
-from .utils import extract_text_from_pdf
+from .utils import extract_text_from_pdf,analyze_resume
 
 # Basic check view
 def display(request):
@@ -18,10 +18,14 @@ def upload_resume(request):
             file_path=resume.file.path
             extracted_text=extract_text_from_pdf(file_path)
             resume.extracted_text=extracted_text
+            score,matched_keywords=analyze_resume(extracted_text)
+            resume.score=score
+            resume.matched_keywords=matched_keywords
             resume.save()
             return JsonResponse({
                 "status": "success", 
-                "message": "Resume uploaded and text extracted successfully!"
+                "score":score,
+                "matched_keywords":matched_keywords
             })
     else:
         # Show an empty form for the GET request
